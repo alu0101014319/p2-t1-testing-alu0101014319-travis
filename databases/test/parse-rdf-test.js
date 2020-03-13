@@ -13,7 +13,7 @@ describe('parseRDF', () => {
 
 it('should parse RDF content', () => {
   const book = parseRDF(rdf);
-  const subjects = book.subjects;
+  const lcc = book.lcc;
   const links = book.links;
   expect(book).to.be.an('object');
   expect(book).to.have.a.property('id', 132);
@@ -23,12 +23,12 @@ it('should parse RDF content', () => {
   .and.contains('Sunzi, active 6th century B.C.')
   .and.contains('Giles, Lionel');
 
-  /*expect(book).to.have.a.property('subjects')
+  expect(book).to.have.a.property('subjects')
  	.that.is.an('array').with.lengthOf(2)
  	.and.contains('Military art and science -- Early works to 1800')
-  .and.contains('War -- Early works to 1800');*/
+  .and.contains('War -- Early works to 1800');
 
-  subjects.forEach(subjectLCC => expect(subjectLCC)
+  lcc.forEach(subjectLCC => expect(subjectLCC)
   .that.is.a('string')
   .and.to.have.length.above(0)
   .and.not.startsWith('I')
