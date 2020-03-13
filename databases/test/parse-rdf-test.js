@@ -14,6 +14,7 @@ describe('parseRDF', () => {
 it('should parse RDF content', () => {
   const book = parseRDF(rdf);
   const subjects = book.subjects;
+  const links = book.links;
   expect(book).to.be.an('object');
   expect(book).to.have.a.property('id', 132);
   expect(book).to.have.a.property('title', 'The Art of War');
@@ -35,5 +36,9 @@ it('should parse RDF content', () => {
   .and.not.startsWith('W')
   .and.not.startsWith('X')
   .and.not.startsWith('Y'));
+
+  links.forEach(link => expect(link)
+  .that.is.a('string')
+  .and.not.contains('.jpg'));
   });
 });
